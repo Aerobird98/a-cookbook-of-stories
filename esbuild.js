@@ -1,6 +1,6 @@
 require("esbuild")
   .build({
-    entryPoints: ["index.js"],
+    entryPoints: ["index.js", "plugin.js"],
     bundle: true,
     outdir: "./build",
     minify: true,
