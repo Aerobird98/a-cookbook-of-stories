@@ -30,7 +30,8 @@
   },
   "homepage": "https://github.com/Aerobird98/a-cookbook-of-stories#readme",
   "dependencies": {
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "phaser3-rex-plugins": "^1.1.68"
   },
   "devDependencies": {
     "esbuild": "^0.14.38",

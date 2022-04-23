@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import RexPinchPlugin from "phaser3-rex-plugins/dist/rexpinchplugin";
 
 const IMAGE_NAME = "FRAMES";
 const SEPERATOR = "_";
@@ -6,7 +7,7 @@ const START_NUMBER = 10;
 const IMAGE_WIDTH = 1826;
 const IMAGE_HEIGHT = 2000;
 const PAGES = 5;
-const PAGE_BOTTOM_MARGIN = 0;
+const PAGE_MARGIN = 0;
 const FRAMES = 24;
 const FPS = 12;
 const MIN_ZOOM = 1;
@@ -33,12 +34,12 @@ class Main extends Phaser.Scene {
 
     //"https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexpinchplugin.min.js"
     this.load.setPath("");
-    this.load.plugin("rexpinchplugin", "plugin.js", true);
+    this.load.plugin("RexPinchPlugin", RexPinchPlugin, true);
   }
 
   create() {
-    let dragScale = this.plugins.get("rexpinchplugin").add(this);
-    let separator = PAGE_BOTTOM_MARGIN;
+    let dragScale = this.plugins.get("RexPinchPlugin").add(this);
+    let separator = PAGE_MARGIN;
     let height;
     let camera = this.cameras.main;
     let frames = [];
@@ -62,9 +63,9 @@ class Main extends Phaser.Scene {
         .sprite(0, separator, "")
         .play("gif" + i)
         .setOrigin(0);
-      separator += IMAGE_HEIGHT + PAGE_BOTTOM_MARGIN;
+      separator += IMAGE_HEIGHT + PAGE_MARGIN;
     }
-    height = separator - PAGE_BOTTOM_MARGIN * PAGES;
+    height = separator - PAGE_MARGIN * PAGES;
 
     camera.setBounds(0, 0, IMAGE_WIDTH, separator);
     camera.zoom = MIN_ZOOM;
