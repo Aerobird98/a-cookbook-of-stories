@@ -14,14 +14,9 @@ We use htttp-server, a simple zero configuration webserver for local testing. Af
 
 ## Customizability
 
-The images in this website are of the same size,
-both in width, and height. the naming of the images
-should be the same, with unique numbers starting from 10,
-as it is easier to loop through them that way.
+This program is designed to be reusable for future animated webcomics, there are a few constant values that can be customized like: How many pages does your comic has? Whats their resolution? How many frames? FPS? Etc...
 
-The image names use a format like it can be seen ("FRAMES_0000"), most animating softwares use naming systems like this.
-
-The constant values can be modified for personalization.
+Just place your images in the `img/` folder under the `build/` directory. Each page is another folder numbered from `0` to whatever number of pages you need minus `1`. The image names need to be the same (for every image in every directory) and must use a format like `[IMAGE_NAME]_0000...[IMAGE_NAME]_0024`, most professional animation softwares use naming systems like this.
 
 # Licenses
 
