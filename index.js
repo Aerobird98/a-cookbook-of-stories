@@ -14,8 +14,6 @@ class Main extends Phaser.Scene {
     super();
   }
 
-  init() {}
-
   preload() {
     this.load.setPath("img/");
     for (let i = 0; i < PAGES; i++) {
