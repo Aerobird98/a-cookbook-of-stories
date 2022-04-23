@@ -1,0 +1,20 @@
+{
+  "image": {
+    "name": "FRAMES",
+    "seperator": "_",
+    "start_number": 10,
+    "width": 1826,
+    "height": 2000,
+    "fps": 12,
+    "frames": 24
+  },
+  "page": {
+    "margin": 0,
+    "amount": 5
+  },
+  "zoom": {
+    "min": 1,
+    "max": 3,
+    "factor": 0.1
+  }
+}
