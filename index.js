@@ -42,6 +42,7 @@ class Main extends Phaser.Scene {
     let separator = PAGE_MARGIN;
     let height;
     let camera = this.cameras.main;
+    this;
     let frames = [];
 
     for (let i = 0; i < PAGES; i++) {
@@ -84,6 +85,10 @@ class Main extends Phaser.Scene {
       } else {
         // Do nothing.
       }
+    });
+
+    this.input.keyboard.on("keydown-F", (event) => {
+      this.scale.toggleFullscreen();
     });
 
     dragScale
