@@ -87,10 +87,6 @@ class Main extends Phaser.Scene {
       }
     });
 
-    this.input.keyboard.on("keydown-F", (event) => {
-      this.scale.toggleFullscreen();
-    });
-
     dragScale
       .on("drag1", function (dragScale) {
         let drag1Vector = dragScale.drag1Vector;
@@ -111,24 +107,23 @@ class Main extends Phaser.Scene {
         this
       );
 
-    /*
     let downTime = 0;
     this.input.on("pointerdown", (pointer) => {
-    if (pointer.time - downTime < 200) {
+      if (pointer.time - downTime < 200) {
         downTime = 0;
-        camera.scrollX = 0;
+        this.scale.toggleFullscreen();
+        /*         camera.scrollX = 0;
 
         if (camera.scrollY > height) {
-        camera.scrollY = height;
+          camera.scrollY = height;
         }
         if (camera.scrollY < 0) {
-        camera.scrollY = 0;
-        }
-    } else {
+          camera.scrollY = 0;
+        } */
+      } else {
         downTime = pointer.time;
-    }
+      }
     });
-    */
   }
 }
 
