@@ -4,7 +4,7 @@
   "description": "An animated webcomic, running on top of the phaser game engine.",
   "main": "index.js",
   "scripts": {
-    "start": "http-server ./build",
+    "start": "http-server ./build -c-1",
     "build": "node esbuild.js",
     "test": "npm run build && npm start",
     "deploy": "gh-pages -d build",
