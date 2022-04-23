@@ -54,7 +54,7 @@ class Main extends Phaser.Scene {
     height = separator - PAGE_MARGIN * PAGES;
 
     this.cameras.main.setBounds(0, 0, IMAGE_WIDTH, separator);
-    this.cameras.main.zoom = 0.3;
+    this.cameras.main.zoom = 1;
     this.cameras.main.scrollX = 0;
     this.cameras.main.scrollY = 0;
 
@@ -72,14 +72,14 @@ class Main extends Phaser.Scene {
     this.input.on("wheel", (pointer, gameObjects, deltaX, deltaY, deltaZ) => {
       if (deltaY > 0) {
         let newZoom = this.cameras.main.zoom - ZOOM_SENS;
-        if (newZoom > 0.3) {
+        if (newZoom >= 1) {
           this.cameras.main.zoom = newZoom;
         }
       }
 
       if (deltaY < 0) {
         let newZoom = this.cameras.main.zoom + ZOOM_SENS;
-        if (newZoom < 1.3) {
+        if (newZoom <= 3) {
           this.cameras.main.zoom = newZoom;
         }
       }
@@ -96,8 +96,8 @@ class Main extends Phaser.Scene {
         function (dragScale) {
           let scaleFactor = dragScale.scaleFactor;
           if (
-            camera.zoom * scaleFactor >= 0.3 &&
-            camera.zoom * scaleFactor <= 1.3
+            camera.zoom * scaleFactor >= 1 &&
+            camera.zoom * scaleFactor <= 3
           ) {
             camera.zoom *= scaleFactor;
           }
@@ -128,11 +128,11 @@ const config = {
   type: Phaser.AUTO,
   title: "A CookBook of Stories",
   scene: [Main],
-  width: IMAGE_WIDTH,
-  height: IMAGE_HEIGHT,
   scale: {
-    mode: Phaser.Scale.RESIZE,
+    mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: IMAGE_WIDTH,
+    height: IMAGE_HEIGHT,
   },
 };
 
