@@ -19,12 +19,50 @@ let to4Digits = (x) => {
   return number.substring(number.length - 4);
 };
 
+class PrePreloader extends Phaser.Scene {
+  constructor() {
+    super();
+  }
+
+  preload() {
+    this.load.setPath("img/");
+    this.load.atlas("LOADING");
+    this.load.on("complete", this.complete, {
+      scene: this.scene,
+    });
+  }
+
+  complete() {
+    console.log("COMPLETE");
+    this.scene.start("preloader");
+  }
+}
+
 class Preloader extends Phaser.Scene {
   constructor() {
     super();
   }
 
   preload() {
+    let frames = [];
+    for (let i = 0; i < FRAMES; i++) {
+      frames.push({
+        key: "LOADING",
+        frame: "LOADING" + SEPERATOR + to4Digits(i),
+      });
+    }
+    this.anims.create({
+      key: "gif",
+      frames: frames,
+      repeat: -1,
+      frameRate: FPS,
+    });
+
+    this.add
+      .sprite(IMAGE_WIDTH / 2, IMAGE_HEIGHT / 2 - 60, "LOADING", "LOADING_0000")
+      .play("gif")
+      .setOrigin(0.5, 0.5);
+
     let text = this.add
       .text(IMAGE_WIDTH / 2, IMAGE_HEIGHT / 2, "LOADING: 0.00%", {
         fontFamily: "Garet, sans-serif",
@@ -165,6 +203,7 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+game.scene.add("prepreloader", PrePreloader);
 game.scene.add("preloader", Preloader);
 game.scene.add("main", Main);
-game.scene.start("preloader");
+game.scene.start("prepreloader");
