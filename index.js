@@ -3,9 +3,9 @@ import RexPinchPlugin from "phaser3-rex-plugins/dist/rexpinchplugin";
 
 const IMAGE_NAME = "FRAMES";
 const SEPERATOR = "_";
-const START_NUMBER = 10;
-const IMAGE_WIDTH = 1826;
-const IMAGE_HEIGHT = 2000;
+const START_NUMBER = 0;
+const IMAGE_WIDTH = 986;
+const IMAGE_HEIGHT = 1080;
 const PAGES = 5;
 const PAGE_MARGIN = 0;
 const FRAMES = 24;
