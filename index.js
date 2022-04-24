@@ -19,12 +19,20 @@ let to4Digits = (x) => {
   return number.substring(number.length - 4);
 };
 
-class Main extends Phaser.Scene {
+class Preloader extends Phaser.Scene {
   constructor() {
     super();
   }
 
   preload() {
+    let text = this.add
+      .text(IMAGE_WIDTH / 2, IMAGE_HEIGHT / 2, "LOADING: 0.00%", {
+        fontFamily: "Garet, sans-serif",
+        fontSize: "2rem",
+        fill: "#fff",
+      })
+      .setOrigin(0.5, 0.5);
+
     this.load.setPath("img/");
     for (let i = 0; i < PAGES; i++) {
       for (let j = START_NUMBER; j < FRAMES + START_NUMBER; j++) {
@@ -35,6 +43,28 @@ class Main extends Phaser.Scene {
     //"https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexpinchplugin.min.js"
     this.load.setPath("");
     this.load.plugin("RexPinchPlugin", RexPinchPlugin, true);
+
+    this.load.on("progress", this.progress, { text: text });
+    this.load.on("complete", this.complete, {
+      scene: this.scene,
+      text: text,
+    });
+  }
+
+  progress(percentage) {
+    console.log((percentage * 100).toFixed(2) + "%");
+    this.text.setText("LOADING: " + (percentage * 100).toFixed(2) + "%");
+  }
+  complete() {
+    console.log("COMPLETE");
+    this.text.setText("COMPLETE");
+    this.scene.start("main");
+  }
+}
+
+class Main extends Phaser.Scene {
+  constructor() {
+    super();
   }
 
   create() {
@@ -125,7 +155,6 @@ class Main extends Phaser.Scene {
 const config = {
   type: Phaser.AUTO,
   title: "A CookBook of Stories",
-  scene: [Main],
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -135,3 +164,7 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+game.scene.add("preloader", Preloader);
+game.scene.add("main", Main);
+game.scene.start("preloader");
