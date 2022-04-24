@@ -109,17 +109,12 @@ class Main extends Phaser.Scene {
 
     let downTime = 0;
     this.input.on("pointerdown", (pointer) => {
+      if (dragScale.isPinched) {
+        return;
+      }
       if (pointer.time - downTime < 200) {
         downTime = 0;
         this.scale.toggleFullscreen();
-        /*         camera.scrollX = 0;
-
-        if (camera.scrollY > height) {
-          camera.scrollY = height;
-        }
-        if (camera.scrollY < 0) {
-          camera.scrollY = 0;
-        } */
       } else {
         downTime = pointer.time;
       }
