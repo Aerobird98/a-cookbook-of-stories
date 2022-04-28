@@ -25,7 +25,7 @@ class PrePreloader extends Phaser.Scene {
   }
 
   preload() {
-    this.load.setPath("img/");
+    this.load.setPath("");
     this.load.atlas("LOADING");
     this.load.on("progress", this.progress);
     this.load.on("complete", this.complete, {
