@@ -27,6 +27,7 @@ class PrePreloader extends Phaser.Scene {
   preload() {
     this.load.setPath("");
     this.load.atlas("LOADING");
+    this.load.bitmapFont("GARET");
     this.load.on("progress", this.progress);
     this.load.on("complete", this.complete, {
       scene: this.scene,
@@ -69,11 +70,13 @@ class Preloader extends Phaser.Scene {
       .setOrigin(0.5, 0.5);
 
     let text = this.add
-      .text(IMAGE_WIDTH / 2, IMAGE_HEIGHT / 2, "LOADING: 0.00%", {
-        fontFamily: "Garet, sans-serif",
-        fontSize: "2rem",
-        fill: "#fff",
-      })
+      .bitmapText(
+        IMAGE_WIDTH / 2,
+        IMAGE_HEIGHT / 2,
+        "GARET",
+        "LOADING: 0.00%",
+        32
+      )
       .setOrigin(0.5, 0.5);
 
     this.load.setPath("img/");
